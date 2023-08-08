@@ -1,4 +1,4 @@
-pub mod structs;
+mod enums;
 mod endpoints;
 mod error;
 mod api;
@@ -6,6 +6,7 @@ mod api;
 pub use api::BBApi;
 pub use error::Error;
 pub use endpoints::*;
+pub use enums::*;
 
 #[cfg(test)]
 mod tests {

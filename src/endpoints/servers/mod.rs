@@ -1,7 +1,7 @@
 use derive_getters::Getters;
 use serde::Deserialize;
 
-use crate::structs::{MapSize, Gamemode, Region, DayNight, AntiCheat};
+use crate::enums::{MapSize, Gamemode, Region, DayNight, AntiCheat};
 
 /// Struct for the data of a single server  
 /// `BBApi::server_list()` returns a Vec of these.

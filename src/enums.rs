@@ -29,8 +29,14 @@ pub enum Gamemode {
     #[serde(rename = "DOMI")]
     Domination,
 
+    #[serde(rename = "ELIM")]
+    Elimination,
+
     #[serde(rename = "TDM")]
     TeamDeathmatch,
+
+    #[serde(rename = "CTF")]
+    CaptureTheFlag,
 
     VoxelFortify
 }
@@ -46,19 +52,19 @@ pub enum MapSize {
 #[derive(Deserialize, Debug)]
 pub enum Region {
     #[serde(rename = "Europe_Central")]
-    EuropeCentral,
+    Europe,
 
     #[serde(rename = "Japan_Central")]
-    JapanCentral,
+    Japan,
 
     #[serde(rename = "Australia_Central")]
-    AustraliaCentral,
+    Australia,
 
     #[serde(rename = "America_Central")]
-    AmericaCentral,
+    America,
 
     #[serde(rename = "Brazil_Central")]
-    BrazilCentral,
+    Brazil,
 
     #[serde(rename = "Developer_Server")]
     DeveloperServer,

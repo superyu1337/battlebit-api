@@ -39,7 +39,8 @@ impl BBApi {
 }
 
 impl Default for BBApi {
-    /// Creates a new BBApi with the default URL
+    /// Creates a new BBApi with the default URL  
+    /// Default URL is `https://publicapi.battlebit.cloud/`
     fn default() -> Self {
         Self(Url::parse("https://publicapi.battlebit.cloud/").unwrap())
     }
