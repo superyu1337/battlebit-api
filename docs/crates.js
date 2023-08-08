@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["battlebit_api"];

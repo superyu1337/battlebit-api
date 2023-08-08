@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"battlebit_api":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.70.0/core/default/trait.Default.html\" title=\"trait core::default::Default\">Default</a> for <a class=\"struct\" href=\"battlebit_api/struct.BBApi.html\" title=\"struct battlebit_api::BBApi\">BBApi</a>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
