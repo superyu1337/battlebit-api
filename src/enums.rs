@@ -1,55 +1,53 @@
+use derive_more::Display;
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Display)]
 pub enum AntiCheat {
     #[serde(rename = "EAC")]
-    EasyAntiCheat
+    EasyAntiCheat,
+    #[serde(other)]
+    Unknown
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Display)]
 pub enum DayNight {
     Day,
-    Night
+    Night,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Display)]
 pub enum Gamemode {
     #[serde(rename = "CONQ")]
     Conquest,
-
     #[serde(rename = "INFCONQ")]
     InfanteryConquest,
-
     #[serde(rename = "RUSH")]
     Rush,
-
     #[serde(rename = "FRONTLINE")]
     Frontline,
-
     #[serde(rename = "DOMI")]
     Domination,
-
-    #[serde(rename = "ELIM")]
+    #[serde(rename = "ELI")]
     Elimination,
-
     #[serde(rename = "TDM")]
     TeamDeathmatch,
-
-    #[serde(rename = "CTF")]
     CaptureTheFlag,
-
-    VoxelFortify
+    VoxelFortify,
+    #[serde(other)]
+    Unknown
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Display)]
 pub enum MapSize {
     Ultra,
     Big,
     Medium,
     Small,
+    #[serde(other)]
+    Unknown
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, Display)]
 pub enum Region {
     #[serde(rename = "Europe_Central")]
     Europe,
@@ -68,4 +66,7 @@ pub enum Region {
 
     #[serde(rename = "Developer_Server")]
     DeveloperServer,
+
+    #[serde(other)]
+    Unknown
 }
