@@ -1,7 +1,7 @@
 use derive_more::Display;
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug, Display)]
+#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 pub enum AntiCheat {
     #[serde(rename = "EAC")]
     EasyAntiCheat,
@@ -9,13 +9,13 @@ pub enum AntiCheat {
     Unknown
 }
 
-#[derive(Deserialize, Debug, Display)]
+#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 pub enum DayNight {
     Day,
     Night,
 }
 
-#[derive(Deserialize, Debug, Display)]
+#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Gamemode {
     #[serde(rename = "CONQ")]
     Conquest,
@@ -37,7 +37,7 @@ pub enum Gamemode {
     Unknown
 }
 
-#[derive(Deserialize, Debug, Display)]
+#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 pub enum MapSize {
     Ultra,
     Big,
@@ -47,7 +47,7 @@ pub enum MapSize {
     Unknown
 }
 
-#[derive(Deserialize, Debug, Display)]
+#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Region {
     #[serde(rename = "Europe_Central")]
     Europe,

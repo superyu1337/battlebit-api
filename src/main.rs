@@ -6,14 +6,17 @@ fn main() {
         .expect("Retrieving server list");
 
     server_list.iter().for_each(|server| {
-        println!("{} [{}, {}, {}] ({}, {}, {})", 
-            server.name(), 
-            server.gamemode(), 
-            server.map(),
-            server.map_size(),
-            server.hz(), 
-            server.anti_cheat(),
-            server.build()
-        )
+
+        if *server.gamemode() == battlebit_api::Gamemode::Conquest {
+            println!("{} [{}, {}, {}] ({}, {}, {})", 
+                server.name(), 
+                server.gamemode(), 
+                server.map(),
+                server.map_size(),
+                server.hz(), 
+                server.anti_cheat(),
+                server.build()
+            )
+        }
     });
 }
