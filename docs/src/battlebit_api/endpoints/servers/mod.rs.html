@@ -49,14 +49,12 @@
 <a href="#49" id="49">49</a>
 <a href="#50" id="50">50</a>
 <a href="#51" id="51">51</a>
-<a href="#52" id="52">52</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_getters::Getters;
 <span class="kw">use </span>serde::Deserialize;
 
 <span class="kw">use </span><span class="kw">crate</span>::enums::{MapSize, Gamemode, Region, DayNight, AntiCheat};
 
-<span class="doccomment">/// Struct for the data of a single server  
-/// `BBApi::server_list()` returns a Vec of these.
+<span class="doccomment">/// Data of a single server
 </span><span class="attr">#[allow(dead_code)]
 #[derive(Deserialize, Debug, Getters)]
 </span><span class="kw">pub struct </span>ServerData {

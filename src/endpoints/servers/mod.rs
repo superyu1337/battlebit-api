@@ -3,8 +3,7 @@ use serde::Deserialize;
 
 use crate::enums::{MapSize, Gamemode, Region, DayNight, AntiCheat};
 
-/// Struct for the data of a single server  
-/// `BBApi::server_list()` returns a Vec of these.
+/// Data of a single server
 #[allow(dead_code)]
 #[derive(Deserialize, Debug, Getters)]
 pub struct ServerData {
