@@ -5,7 +5,7 @@ edition = "2021"
 homepage = "https://github.com/superyu1337/battlebit-api"
 reposiory = "https://github.com/superyu1337/battlebit-api"
 readme = "README.md"
-desciption = "Battlebit API library"
+description = "Battlebit API library"
 keywords = ["api"]
 license-file = "LICENSE.txt"
 
