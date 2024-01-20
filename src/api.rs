@@ -1,4 +1,9 @@
 use reqwest::Url;
+
+#[cfg(target_arch = "wasm32")]
+use reqwest::get;
+
+#[cfg(not(target_arch = "wasm32"))]
 use reqwest::blocking::get;
 
 use crate::endpoints;
@@ -29,6 +34,17 @@ impl BBApi {
     }
 
     /// Fetches the server list and puts it into a `Vec<ServerData>`
+    #[cfg(target_arch = "wasm32")]
+    pub async fn server_list(&self) -> Result<Vec<endpoints::ServerData>, Error> {
+        let url = self.0.join("Servers/GetServerList")?;
+        let data = get(url).await?.bytes().await?;
+        let data = serde_json::from_slice(fix_bom(&data))?;
+
+        Ok(data)
+    }
+
+    /// Fetches the server list and puts it into a `Vec<ServerData>`
+    #[cfg(not(target_arch = "wasm32"))]
     pub fn server_list(&self) -> Result<Vec<endpoints::ServerData>, Error> {
         let url = self.0.join("Servers/GetServerList")?;
         let data = get(url)?.bytes()?;

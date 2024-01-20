@@ -33,10 +33,12 @@ pub enum Gamemode {
     TeamDeathmatch,
     CaptureTheFlag,
     VoxelFortify,
+    VoxelTrench,
     #[serde(rename = "FFA")]
     FreeForAll,
     #[serde(rename = "19")]
     /// Formely unknown gamemode, no idea what this exactly is atm.
+    /// Maybe this is a custom gamemode?
     Gamemode19,
     #[serde(other)]
     Unknown
