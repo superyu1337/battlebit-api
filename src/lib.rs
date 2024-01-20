@@ -1,3 +1,5 @@
+#![doc = include_str!("../DOCS_README.md")]
+
 mod enums;
 mod endpoints;
 mod error;
