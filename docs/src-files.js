@@ -1,4 +1,4 @@
-var sourcesIndex = JSON.parse('{\
+var srcIndex = JSON.parse('{\
 "battlebit_api":["",[["endpoints",[["servers",[],["mod.rs"]]],["mod.rs"]]],["api.rs","enums.rs","error.rs","lib.rs"]]\
 }');
-createSourceSidebar();
+createSrcSidebar();

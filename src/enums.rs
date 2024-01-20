@@ -33,6 +33,11 @@ pub enum Gamemode {
     TeamDeathmatch,
     CaptureTheFlag,
     VoxelFortify,
+    #[serde(rename = "FFA")]
+    FreeForAll,
+    #[serde(rename = "19")]
+    /// Formely unknown gamemode, no idea what this exactly is atm.
+    Gamemode19,
     #[serde(other)]
     Unknown
 }
@@ -43,6 +48,7 @@ pub enum MapSize {
     Big,
     Medium,
     Small,
+    Tiny,
     #[serde(other)]
     Unknown
 }
@@ -51,22 +57,18 @@ pub enum MapSize {
 pub enum Region {
     #[serde(rename = "Europe_Central")]
     Europe,
-
     #[serde(rename = "Japan_Central")]
     Japan,
-
     #[serde(rename = "Australia_Central")]
     Australia,
-
     #[serde(rename = "America_Central")]
     America,
-
     #[serde(rename = "Brazil_Central")]
     Brazil,
-
+    #[serde(rename = "Asia_Central")]
+    Asia,
     #[serde(rename = "Developer_Server")]
     DeveloperServer,
-
     #[serde(other)]
     Unknown
 }

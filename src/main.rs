@@ -5,9 +5,15 @@ fn main() {
     let server_list = api.server_list()
         .expect("Retrieving server list");
 
-    server_list.iter().for_each(|server| {
+    let servers_with_unknown: Vec<battlebit_api::ServerData> = server_list
+        .into_iter()
+        .filter(|server| server.has_unknown())
+        .collect();
 
-        if *server.gamemode() == battlebit_api::Gamemode::Conquest {
+    if servers_with_unknown.is_empty() {
+        println!("No servers with unknown fields found!")
+    } else {
+        servers_with_unknown.iter().for_each(|server| {
             println!("{} [{}, {}, {}] ({}, {}, {})", 
                 server.name(), 
                 server.gamemode(), 
@@ -17,6 +23,6 @@ fn main() {
                 server.anti_cheat(),
                 server.build()
             )
-        }
-    });
+        });
+    }
 }
