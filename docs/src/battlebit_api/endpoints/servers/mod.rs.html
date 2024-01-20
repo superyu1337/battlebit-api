@@ -66,14 +66,18 @@
 <a href="#66" id="66">66</a>
 <a href="#67" id="67">67</a>
 <a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_getters::Getters;
-<span class="kw">use </span>serde::Deserialize;
+<span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="kw">use </span><span class="kw">crate</span>::enums::{MapSize, Gamemode, Region, DayNight, AntiCheat};
 
 <span class="doccomment">/// Data of a single server
 </span><span class="attr">#[allow(dead_code)]
-#[derive(Deserialize, Debug, Getters)]
+#[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
 </span><span class="kw">pub struct </span>ServerData {
     <span class="attr">#[serde(rename = <span class="string">&quot;Name&quot;</span>)]
     </span>name: String,
@@ -91,19 +95,23 @@
     </span>region: Region,
 
     <span class="attr">#[serde(rename = <span class="string">&quot;Players&quot;</span>)]
-    </span><span class="doccomment">/// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    </span><span class="doccomment">/// Get field `player_count` from instance of `ServerData`.  
+    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>player_count: u8,
 
     <span class="attr">#[serde(rename = <span class="string">&quot;QueuePlayers&quot;</span>)]
-    </span><span class="doccomment">/// SAFETY: The queued player count should realistically never reach 65_535.
+    </span><span class="doccomment">/// Get field `queued_player_count` from instance of `ServerData`.  
+    /// SAFETY: The queued player count should realistically never reach 65_535.
     </span>queued_player_count: u16,
 
     <span class="attr">#[serde(rename = <span class="string">&quot;MaxPlayers&quot;</span>)]
-    </span><span class="doccomment">/// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    </span><span class="doccomment">/// Get field `max_players` from instance of `ServerData`.  
+    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>max_players: u8,
 
     <span class="attr">#[serde(rename = <span class="string">&quot;Hz&quot;</span>)]
-    </span><span class="doccomment">/// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    </span><span class="doccomment">/// Get field `hz` from instance of `ServerData`.  
+    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>hz: u8,
 
     <span class="attr">#[serde(rename = <span class="string">&quot;DayNight&quot;</span>)]
@@ -123,7 +131,7 @@
 }
 
 <span class="kw">impl </span>ServerData {
-    <span class="doccomment">/// Small check if this ServerData has &quot;Unknown&quot; fields used.
+    <span class="doccomment">/// Small check if this ServerData has `Unknown` fields.  
     /// Mostly used by me to check if this API client is outdated.
     </span><span class="kw">pub fn </span>has_unknown(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="kw">if </span><span class="kw-2">*</span><span class="self">self</span>.anti_cheat() == AntiCheat::Unknown { <span class="kw">return </span><span class="bool-val">true </span>}

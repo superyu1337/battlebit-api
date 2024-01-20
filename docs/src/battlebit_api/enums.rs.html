@@ -73,9 +73,9 @@
 <a href="#73" id="73">73</a>
 <a href="#74" id="74">74</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_more::Display;
-<span class="kw">use </span>serde::Deserialize;
+<span class="kw">use </span>serde::{Deserialize, Serialize};
 
-<span class="attr">#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+<span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub enum </span>AntiCheat {
     <span class="attr">#[serde(rename = <span class="string">&quot;EAC&quot;</span>)]
     </span>EasyAntiCheat,
@@ -83,13 +83,13 @@
     </span>Unknown
 }
 
-<span class="attr">#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+<span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub enum </span>DayNight {
     Day,
     Night,
 }
 
-<span class="attr">#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+<span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub enum </span>Gamemode {
     <span class="attr">#[serde(rename = <span class="string">&quot;CONQ&quot;</span>)]
     </span>Conquest,
@@ -116,7 +116,7 @@
     </span>Unknown
 }
 
-<span class="attr">#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+<span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub enum </span>MapSize {
     Ultra,
     Big,
@@ -127,7 +127,7 @@
     </span>Unknown
 }
 
-<span class="attr">#[derive(Deserialize, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+<span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
 </span><span class="kw">pub enum </span>Region {
     <span class="attr">#[serde(rename = <span class="string">&quot;Europe_Central&quot;</span>)]
     </span>Europe,

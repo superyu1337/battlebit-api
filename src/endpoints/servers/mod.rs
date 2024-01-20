@@ -1,11 +1,11 @@
 use derive_getters::Getters;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 use crate::enums::{MapSize, Gamemode, Region, DayNight, AntiCheat};
 
 /// Data of a single server
 #[allow(dead_code)]
-#[derive(Deserialize, Debug, Getters)]
+#[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
 pub struct ServerData {
     #[serde(rename = "Name")]
     name: String,
@@ -23,18 +23,22 @@ pub struct ServerData {
     region: Region,
 
     #[serde(rename = "Players")]
+    /// Get field `player_count` from instance of `ServerData`.  
     /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     player_count: u8,
 
     #[serde(rename = "QueuePlayers")]
+    /// Get field `queued_player_count` from instance of `ServerData`.  
     /// SAFETY: The queued player count should realistically never reach 65_535.
     queued_player_count: u16,
 
     #[serde(rename = "MaxPlayers")]
+    /// Get field `max_players` from instance of `ServerData`.  
     /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     max_players: u8,
 
     #[serde(rename = "Hz")]
+    /// Get field `hz` from instance of `ServerData`.  
     /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     hz: u8,
 
@@ -55,7 +59,7 @@ pub struct ServerData {
 }
 
 impl ServerData {
-    /// Small check if this ServerData has "Unknown" fields used.
+    /// Small check if this ServerData has `Unknown` fields.  
     /// Mostly used by me to check if this API client is outdated.
     pub fn has_unknown(&self) -> bool {
         if *self.anti_cheat() == AntiCheat::Unknown { return true }
