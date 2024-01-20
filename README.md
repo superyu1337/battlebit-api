@@ -20,7 +20,7 @@ Click to show Cargo.toml.
 
 ```toml
 [dependencies]
-battlebit-api = "0.1.5"
+battlebit-api = "0.1.6"
 ```
 
 </details>
