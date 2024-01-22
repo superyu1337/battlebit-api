@@ -9,34 +9,51 @@ fn de_usize<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result<usize, 
     })
 }
 
-/// Data of a single Clan
 #[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
-#[serde(rename_all = "PascalCase")]
+#[serde(rename_all(deserialize = "PascalCase"))]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
+/// Data of a single Clan
 pub struct Clan {
-    #[serde(rename = "Clan")]
+    #[serde(rename(deserialize = "Clan", serialize = "name"))]
+    #[cfg_attr(feature = "utoipa", schema(example = "Clan"))]
+    /// Name of this clan
     name: String,
+
+    #[cfg_attr(feature = "utoipa", schema(example = "CLN"))]
+    /// Tag of this clan
     tag: String,
-    #[serde(rename = "XP", deserialize_with = "de_usize")]
+
+    #[serde(rename(deserialize = "XP"), deserialize_with = "de_usize")]
+    #[cfg_attr(feature = "utoipa", schema(example = 1_000_000))]
+    /// The total experience of this clan
     xp: usize,
     #[serde(deserialize_with = "de_usize")]
+    #[cfg_attr(feature = "utoipa", schema(example = 100))]
+    /// The maximum amount of players in this clan
     max_players: usize,
 }
 
-/// Data of a single player
 #[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
-#[serde(rename_all = "PascalCase")]
+#[serde(rename_all(deserialize = "PascalCase"))]
+#[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
+/// Data of a single player
 pub struct Player {
+    #[cfg_attr(feature = "utoipa", schema(example = "Player"))]
+    /// The name of this player
     name: String,
+
     #[serde(deserialize_with = "de_usize")]
+    #[cfg_attr(feature = "utoipa", schema(example = 100))]
+    /// The value, this is different for each leaderboard. On the kills leaderboard, it's the amount of kills. On the XP leaderboard, it's the amount of XP.
     value: usize,
 }
 
 /// Leaderboard data
 #[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq, Default)]
-#[serde(rename_all = "PascalCase")]
+#[serde(rename_all(deserialize = "PascalCase"))]
 pub struct Leaderboard {
     top_clans: Vec<Clan>,
     most_xp: Vec<Player>,
