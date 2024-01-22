@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["AntiCheat","DayNight","Error","Gamemode","MapSize","Region"],"struct":["BBApi","ServerData"]};
+window.SIDEBAR_ITEMS = {"enum":["AntiCheat","DayNight","Error","Gamemode","MapSize","Region"],"struct":["BBApi","Clan","Leaderboard","Player","ServerData"]};

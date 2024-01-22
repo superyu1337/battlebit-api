@@ -52,6 +52,24 @@ impl BBApi {
 
         Ok(data)
     }
+
+    /// Fetches the leaderboard.
+    #[cfg(target_arch = "wasm32")]
+    pub async fn leaderboard(&self) -> Result<endpoints::Leaderboard, Error> {
+        let url = self.0.join("Leaderboard/Get")?;
+        let data = get(url).await?.bytes().await?;
+        let result: Vec<endpoints::Leaderboards> = serde_json::from_slice(fix_bom(&data))?;
+        Ok(endpoints::Leaderboard::from(result))
+    }
+
+    /// Fetches the leaderboard.
+    #[cfg(not(target_arch = "wasm32"))]
+    pub fn leaderboard(&self) -> Result<endpoints::Leaderboard, Error> {
+        let url = self.0.join("Leaderboard/Get")?;
+        let data = get(url)?.bytes()?;
+        let result: Vec<endpoints::Leaderboards> = serde_json::from_slice(fix_bom(&data))?;
+        Ok(endpoints::Leaderboard::from(result))
+    }
 }
 
 impl Default for BBApi {

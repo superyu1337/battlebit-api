@@ -7,7 +7,7 @@ mod api;
 
 pub use api::BBApi;
 pub use error::Error;
-pub use endpoints::*;
+pub use endpoints::{ServerData, Leaderboard, Player, Clan};
 pub use enums::*;
 
 #[cfg(test)]
