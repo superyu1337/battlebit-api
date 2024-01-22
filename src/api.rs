@@ -18,6 +18,7 @@ fn fix_bom(data: &[u8]) -> &[u8] {
 }
 
 /// BattleBit API Struct
+#[derive(Clone, PartialEq, Debug)]
 pub struct BBApi(Url);
 
 impl BBApi {
