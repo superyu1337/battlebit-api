@@ -74,45 +74,53 @@
 <a href="#74" id="74">74</a>
 <a href="#75" id="75">75</a>
 <a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_more::Display;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub enum </span>AntiCheat {
-    <span class="attr">#[serde(rename = <span class="string">&quot;EAC&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;EAC&quot;</span>))]
     </span>EasyAntiCheat,
     <span class="attr">#[serde(other)]
     </span>Unknown
 }
 
 <span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub enum </span>DayNight {
     Day,
     Night,
 }
 
 <span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub enum </span>Gamemode {
-    <span class="attr">#[serde(rename = <span class="string">&quot;CONQ&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;CONQ&quot;</span>))]
     </span>Conquest,
-    <span class="attr">#[serde(rename = <span class="string">&quot;INFCONQ&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;INFCONQ&quot;</span>))]
     </span>InfanteryConquest,
-    <span class="attr">#[serde(rename = <span class="string">&quot;RUSH&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;RUSH&quot;</span>))]
     </span>Rush,
-    <span class="attr">#[serde(rename = <span class="string">&quot;FRONTLINE&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;FRONTLINE&quot;</span>))]
     </span>Frontline,
-    <span class="attr">#[serde(rename = <span class="string">&quot;DOMI&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;DOMI&quot;</span>))]
     </span>Domination,
-    <span class="attr">#[serde(rename = <span class="string">&quot;ELI&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;ELI&quot;</span>))]
     </span>Elimination,
-    <span class="attr">#[serde(rename = <span class="string">&quot;TDM&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;TDM&quot;</span>))]
     </span>TeamDeathmatch,
     CaptureTheFlag,
     VoxelFortify,
     VoxelTrench,
-    <span class="attr">#[serde(rename = <span class="string">&quot;FFA&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;FFA&quot;</span>))]
     </span>FreeForAll,
-    <span class="attr">#[serde(rename = <span class="string">&quot;19&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;19&quot;</span>))]
     </span><span class="doccomment">/// Formely unknown gamemode, no idea what this exactly is atm.
     /// Maybe this is a custom gamemode?
     </span>Gamemode19,
@@ -121,6 +129,7 @@
 }
 
 <span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub enum </span>MapSize {
     Ultra,
     Big,
@@ -132,20 +141,21 @@
 }
 
 <span class="attr">#[derive(Deserialize, Serialize, Clone, Copy, Debug, Display, PartialEq, Eq, PartialOrd, Ord)]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub enum </span>Region {
-    <span class="attr">#[serde(rename = <span class="string">&quot;Europe_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Europe_Central&quot;</span>))]
     </span>Europe,
-    <span class="attr">#[serde(rename = <span class="string">&quot;Japan_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Japan_Central&quot;</span>))]
     </span>Japan,
-    <span class="attr">#[serde(rename = <span class="string">&quot;Australia_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Australia_Central&quot;</span>))]
     </span>Australia,
-    <span class="attr">#[serde(rename = <span class="string">&quot;America_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;America_Central&quot;</span>))]
     </span>America,
-    <span class="attr">#[serde(rename = <span class="string">&quot;Brazil_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Brazil_Central&quot;</span>))]
     </span>Brazil,
-    <span class="attr">#[serde(rename = <span class="string">&quot;Asia_Central&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Asia_Central&quot;</span>))]
     </span>Asia,
-    <span class="attr">#[serde(rename = <span class="string">&quot;Developer_Server&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Developer_Server&quot;</span>))]
     </span>DeveloperServer,
     <span class="attr">#[serde(other)]
     </span>Unknown

@@ -17,20 +17,20 @@ fn de_usize<'de, D: serde::Deserializer<'de>>(deserializer: D) -> Result<usize, 
 pub struct Clan {
     #[serde(rename(deserialize = "Clan", serialize = "name"))]
     #[cfg_attr(feature = "utoipa", schema(example = "Clan"))]
-    /// Name of this clan
+    /// Name of this clan.
     name: String,
 
     #[cfg_attr(feature = "utoipa", schema(example = "CLN"))]
-    /// Tag of this clan
+    /// Tag of this clan.
     tag: String,
 
     #[serde(rename(deserialize = "XP"), deserialize_with = "de_usize")]
     #[cfg_attr(feature = "utoipa", schema(example = 1_000_000))]
-    /// The total experience of this clan
+    /// The total experience of this clan.
     xp: usize,
     #[serde(deserialize_with = "de_usize")]
     #[cfg_attr(feature = "utoipa", schema(example = 100))]
-    /// The maximum amount of players in this clan
+    /// The maximum amount of players in this clan.
     max_players: usize,
 }
 
@@ -38,10 +38,10 @@ pub struct Clan {
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
 #[serde(rename_all(deserialize = "PascalCase"))]
 #[cfg_attr(feature = "utoipa", derive(utoipa::ToSchema))]
-/// Data of a single player
+/// Data of a single player.
 pub struct Player {
     #[cfg_attr(feature = "utoipa", schema(example = "Player"))]
-    /// The name of this player
+    /// The name of this player.
     name: String,
 
     #[serde(deserialize_with = "de_usize")]

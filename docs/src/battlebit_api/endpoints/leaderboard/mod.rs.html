@@ -97,6 +97,23 @@
 <a href="#97" id="97">97</a>
 <a href="#98" id="98">98</a>
 <a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_getters::Getters;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -108,34 +125,51 @@
     })
 }
 
-<span class="doccomment">/// Data of a single Clan
-</span><span class="attr">#[allow(dead_code)]
+<span class="attr">#[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
-#[serde(rename_all = <span class="string">&quot;PascalCase&quot;</span>)]
+#[serde(rename_all(deserialize = <span class="string">&quot;PascalCase&quot;</span>))]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
+</span><span class="doccomment">/// Data of a single Clan
 </span><span class="kw">pub struct </span>Clan {
-    <span class="attr">#[serde(rename = <span class="string">&quot;Clan&quot;</span>)]
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Clan&quot;</span>, serialize = <span class="string">&quot;name&quot;</span>))]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;Clan&quot;</span>))]
+    </span><span class="doccomment">/// Name of this clan.
     </span>name: String,
-    tag: String,
-    <span class="attr">#[serde(rename = <span class="string">&quot;XP&quot;</span>, deserialize_with = <span class="string">&quot;de_usize&quot;</span>)]
+
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;CLN&quot;</span>))]
+    </span><span class="doccomment">/// Tag of this clan.
+    </span>tag: String,
+
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;XP&quot;</span>), deserialize_with = <span class="string">&quot;de_usize&quot;</span>)]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">1_000_000</span>))]
+    </span><span class="doccomment">/// The total experience of this clan.
     </span>xp: usize,
     <span class="attr">#[serde(deserialize_with = <span class="string">&quot;de_usize&quot;</span>)]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">100</span>))]
+    </span><span class="doccomment">/// The maximum amount of players in this clan.
     </span>max_players: usize,
 }
 
-<span class="doccomment">/// Data of a single player
-</span><span class="attr">#[allow(dead_code)]
+<span class="attr">#[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
-#[serde(rename_all = <span class="string">&quot;PascalCase&quot;</span>)]
+#[serde(rename_all(deserialize = <span class="string">&quot;PascalCase&quot;</span>))]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
+</span><span class="doccomment">/// Data of a single player.
 </span><span class="kw">pub struct </span>Player {
-    name: String,
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;Player&quot;</span>))]
+    </span><span class="doccomment">/// The name of this player.
+    </span>name: String,
+
     <span class="attr">#[serde(deserialize_with = <span class="string">&quot;de_usize&quot;</span>)]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">100</span>))]
+    </span><span class="doccomment">/// The value, this is different for each leaderboard. On the kills leaderboard, it&#39;s the amount of kills. On the XP leaderboard, it&#39;s the amount of XP.
     </span>value: usize,
 }
 
 <span class="doccomment">/// Leaderboard data
 </span><span class="attr">#[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq, Default)]
-#[serde(rename_all = <span class="string">&quot;PascalCase&quot;</span>)]
+#[serde(rename_all(deserialize = <span class="string">&quot;PascalCase&quot;</span>))]
 </span><span class="kw">pub struct </span>Leaderboard {
     top_clans: Vec&lt;Clan&gt;,
     most_xp: Vec&lt;Player&gt;,

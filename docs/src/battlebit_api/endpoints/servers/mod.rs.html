@@ -70,6 +70,12 @@
 <a href="#70" id="70">70</a>
 <a href="#71" id="71">71</a>
 <a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>derive_getters::Getters;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -78,55 +84,61 @@
 <span class="doccomment">/// Data of a single server
 </span><span class="attr">#[allow(dead_code)]
 #[derive(Deserialize, Serialize, Clone, Debug, Getters, PartialEq)]
+#[serde(rename_all(deserialize = <span class="string">&quot;PascalCase&quot;</span>))]
+#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, derive(utoipa::ToSchema))]
 </span><span class="kw">pub struct </span>ServerData {
-    <span class="attr">#[serde(rename = <span class="string">&quot;Name&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;Super Awesome Server&quot;</span>))]
+    </span><span class="doccomment">/// The name of this server.
     </span>name: String,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;Map&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;GenericMap&quot;</span>))]
+    </span><span class="doccomment">/// The map name that the server runs.
     </span>map: String,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;MapSize&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = MapSize::Ultra))]
+    </span><span class="doccomment">/// The size of the map.
     </span>map_size: MapSize,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;Gamemode&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = Gamemode::Conquest))]
+    </span><span class="doccomment">/// The current gamemode on this server.
     </span>gamemode: Gamemode,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;Region&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = Region::Europe))]
+    </span><span class="doccomment">/// The region where this server is in.
     </span>region: Region,
 
-    <span class="attr">#[serde(rename = <span class="string">&quot;Players&quot;</span>)]
-    </span><span class="doccomment">/// Get field `player_count` from instance of `ServerData`.  
-    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;Players&quot;</span>))]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">124</span>))]
+    </span><span class="doccomment">/// The amount of players currently playing on this server.
+    </span><span class="comment">// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>player_count: u8,
 
-    <span class="attr">#[serde(rename = <span class="string">&quot;QueuePlayers&quot;</span>)]
-    </span><span class="doccomment">/// Get field `queued_player_count` from instance of `ServerData`.  
-    /// SAFETY: The queued player count should realistically never reach 65_535.
+    <span class="attr">#[serde(rename(deserialize = <span class="string">&quot;QueuePlayers&quot;</span>))]
+    #[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">2</span>))]
+    </span><span class="doccomment">/// The amount of players currently in queue to join this server.
+    </span><span class="comment">// SAFETY: The queued player count should realistically never reach 65_535.
     </span>queued_player_count: u16,
 
-    <span class="attr">#[serde(rename = <span class="string">&quot;MaxPlayers&quot;</span>)]
-    </span><span class="doccomment">/// Get field `max_players` from instance of `ServerData`.  
-    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">254</span>))]
+    </span><span class="doccomment">/// The maximum amount of players that can be on this server.
+    </span><span class="comment">// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>max_players: u8,
 
-    <span class="attr">#[serde(rename = <span class="string">&quot;Hz&quot;</span>)]
-    </span><span class="doccomment">/// Get field `hz` from instance of `ServerData`.  
-    /// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="number">120</span>))]
+    </span><span class="doccomment">/// The refreshrate/tickrate of this server.
+    </span><span class="comment">// SAFETY: Unless Battlebit upgrades their engine, this number should fit into a u8.
     </span>hz: u8,
 
-    <span class="attr">#[serde(rename = <span class="string">&quot;DayNight&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = DayNight::Day))]
+    </span><span class="comment">// Time of day on the map, see DayNight for more info.
     </span>day_night: DayNight,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;IsOfficial&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="bool-val">false</span>))]
+    </span><span class="doccomment">/// Whether or not this server is official.
     </span>is_official: bool,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;HasPassword&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="bool-val">false</span>))]
+    </span><span class="doccomment">/// Whether or not this server has a password.
     </span>has_password: bool,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;AntiCheat&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = AntiCheat::EasyAntiCheat))]
+    </span><span class="doccomment">/// The type of anticheat used on this server. See AntiCHeat for more info.
     </span>anti_cheat: AntiCheat,
-
-    <span class="attr">#[serde(rename = <span class="string">&quot;Build&quot;</span>)]
+    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;utoipa&quot;</span>, schema(example = <span class="string">&quot;Production 2.2.5 Hotfix&quot;</span>))]
+    </span><span class="doccomment">/// The build that this server runs.
     </span>build: String,
 }
 
