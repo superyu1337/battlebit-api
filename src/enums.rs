@@ -40,9 +40,7 @@ pub enum Gamemode {
     #[serde(rename(deserialize = "FFA"))]
     FreeForAll,
     #[serde(rename(deserialize = "19"))]
-    /// Formely unknown gamemode, no idea what this exactly is atm.
-    /// Maybe this is a custom gamemode?
-    Gamemode19,
+    Invasion,
     #[serde(other)]
     Unknown
 }

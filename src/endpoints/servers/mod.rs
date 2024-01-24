@@ -48,7 +48,7 @@ pub struct ServerData {
     hz: u8,
 
     #[cfg_attr(feature = "utoipa", schema(example = DayNight::Day))]
-    // Time of day on the map, see DayNight for more info.
+    /// Time of day on the map, see DayNight for more info.
     day_night: DayNight,
     #[cfg_attr(feature = "utoipa", schema(example = false))]
     /// Whether or not this server is official.
